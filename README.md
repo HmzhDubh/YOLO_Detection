@@ -26,6 +26,6 @@ To use your model to detect and predict new images do the following
 
 `note:` the `picDetect.py` script returns a percentage and the result of the detection in the image  
 ## Live Camera
-* install cv2 `pip intall opencv-python`
+* install cv2 `pip intall opencv-python==4.6.0.66`
 * Prepare the model used to detect live photos
 * prepare the Camera that is used for detection
