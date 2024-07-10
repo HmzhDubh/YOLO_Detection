@@ -1,13 +1,21 @@
 import re
 from ultralytics import YOLO
-model = YOLO("last.pt")
-model.predict("dataset/image1.jpg")
+model = YOLO("best.pt")
+
+# model.predict(img_path)
 
 
-def detection():
+def detection(img):
 
     print("\n___________ Detection _____________")
-    results = model(["dataset/image1.jpg"])
+    print(img)
+    if img.startswith("dataset"):
+        print("img path is correctly formed")
+    else:
+        img = "dataset/" + img
+
+    print("img = ", img)
+    results = model([img])
 
     for result in results:
         boxes = result.boxes
@@ -15,8 +23,8 @@ def detection():
         key_points = result.keypoints
         probs = result.probs
         obb = result.obb
-        result.show()
-        result.save(filename="result.jpg")
+        #result.show()
+        #result.save(filename="result.jpg")
 
     classes = boxes.cls
 
@@ -42,10 +50,9 @@ def detection():
             sumLeftoversBoxes += leftoversBoxSize
 
     perc = (sumLeftoversBoxes / plateBoxSize) * 100
-    print(int(perc), "% of The Food is Wasted")
+    perc = perc - 20 # buffer value    print(int(perc), "% of The Food is Wasted")
 
     return perc
 
-
-percentage = detection()
-print("{0}%".format(format(percentage, ".2f")))
+# percentage = detection(img)
+# print("{0}%".format(format(percentage, ".2f")))
