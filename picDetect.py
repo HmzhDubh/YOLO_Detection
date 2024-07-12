@@ -4,7 +4,7 @@ model = YOLO("best.pt")
 
 # model.predict(img_path)
 
-
+img = "dataset/image1.jpg"
 def detection(img):
 
     print("\n___________ Detection _____________")
@@ -23,7 +23,7 @@ def detection(img):
         key_points = result.keypoints
         probs = result.probs
         obb = result.obb
-        #result.show()
+        result.show()
         #result.save(filename="result.jpg")
 
     classes = boxes.cls
@@ -54,5 +54,5 @@ def detection(img):
 
     return perc
 
-# percentage = detection(img)
-# print("{0}%".format(format(percentage, ".2f")))
+percentage = detection(img)
+print("{0}%".format(format(percentage, ".2f")))

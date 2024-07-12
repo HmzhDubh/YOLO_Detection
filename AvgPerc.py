@@ -1,7 +1,6 @@
 import os
 import picDetect
 
-
 # Detect multiple images and return average percentage
 # images should be in the dataset folder to be detected and obtain their average waste percentage
 
