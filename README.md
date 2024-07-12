@@ -4,8 +4,8 @@
 # ***Requirements***
 - Python
 - YOLO from Ultralytics
-- opencv - python (4.6.0.66) recommended
-- roboflow or other annotation tool
+- Opencv - python (4.6.0.66) recommended
+- Roboflow or other annotation tool
 
 > [!note]
 > You can install pretrained YOLO models config and weights files from [YOLO Site](https://pjreddie.com/darknet/yolo/).
@@ -13,10 +13,10 @@
 > Edit the data.yaml File as suitable for your project 
 
 ##  Train
-* install ultralytics `pip install ultralytics`
+* Install ultralytics `pip install ultralytics`
 And import it in your project
-* specify Your model either pretrained or a new one `yolov8n.py`
-* call train to the model and specify data and number of epochs `data="data.yaml, epochs=10`
+* Specify Your model either pretrained or a new one `yolov8n.py`
+* Call train to the model and specify data and number of epochs `data="data.yaml, epochs=10`
 
 ## Detect Images
 To use your model to detect and predict new images do the following
@@ -26,6 +26,12 @@ To use your model to detect and predict new images do the following
 
 `note:` the `picDetect.py` script returns a percentage and the result of the detection in the image  
 ## Live Camera
-* install cv2 `pip intall opencv-python==4.6.0.66`
+* Install cv2 `pip intall opencv-python==4.6.0.66`
 * Prepare the model used to detect live photos
-* prepare the Camera that is used for detection
+* Prepare the Camera that is used for detection
+
+## API Model
+You are able to use external API to detect data see [robo flow API documentation](https://inference.roboflow.com/quickstart/explore_models/#run-a-private-fine-tuned-model)
+* Define image path and model by its name 
+* Run infer and detection 
+* Display the image
