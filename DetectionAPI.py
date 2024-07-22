@@ -4,7 +4,10 @@ from roboflow import Roboflow
 
 from picDetect import detection
 
-rf = Roboflow(api_key="secret-key")
+# This file uses API of the roboflow project where we annotate and deployer the model
+# The function takes a path to the image which is being processed to be predicted
+# It also uses the detection method to return the percentage of the waste prediction
+rf = Roboflow(api_key="aEZAKqe87WUQ22o8TaW8")
 project = rf.workspace().project("plate-waste-detection")
 model = project.version(7).model
 
@@ -22,6 +25,6 @@ def DetectImgByAPI(img):
     print("new file name is : ",resultsSavePath)
     model.predict(imgpath, confidence=40, overlap=30).save(resultsSavePath)
 
-    percResult = detection(resultsSavePath)
-
+    percResult = detection(imgpath)
+    return percResult
 print(DetectImgByAPI(imgpath))

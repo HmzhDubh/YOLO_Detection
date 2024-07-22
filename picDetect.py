@@ -4,18 +4,21 @@ model = YOLO("best.pt")
 
 # model.predict(img_path)
 
-img = "dataset/image1.jpg"
+# Using our trained model to predict images by passing it through detection() function
+# img represents the path to the image
+
+img = ""
 def detection(img):
-
+    image = img
     print("\n___________ Detection _____________")
-    print(img)
-    if img.startswith("dataset"):
-        print("img path is correctly formed")
+    print(image)
+    if image.startswith("dataset"):
+        print("image path is correctly formed")
     else:
-        img = "dataset/" + img
+        image = "dataset/" + image
 
-    print("img = ", img)
-    results = model([img])
+    print("image = ", image)
+    results = model([image])
 
     for result in results:
         boxes = result.boxes
@@ -50,9 +53,9 @@ def detection(img):
             sumLeftoversBoxes += leftoversBoxSize
 
     perc = (sumLeftoversBoxes / plateBoxSize) * 100
-    perc = perc - 20 # buffer value    print(int(perc), "% of The Food is Wasted")
+    # perc = perc - 20 # buffer value    print(int(perc), "% of The Food is Wasted")
 
-    return perc
+    return format(perc, ".2f")
 
-percentage = detection(img)
-print("{0}%".format(format(percentage, ".2f")))
+#percentage = detection(img)
+#print("{0}%".format(format(percentage, ".2f")))
