@@ -4,15 +4,16 @@ from roboflow import Roboflow
 
 from picDetect import detection
 
-# This file uses API of the roboflow project where we annotate and deployer the model
+# This function uses API of the roboflow project where we annotate and deployed the model
 # The function takes a path to the image which is being processed to be predicted
-# It also uses the detection method to return the percentage of the waste prediction
+# It also uses the detection() method to return the percentage of the waste prediction.
+
 rf = Roboflow(api_key="aEZAKqe87WUQ22o8TaW8")
 project = rf.workspace().project("plate-waste-detection")
 model = project.version(7).model
 
 # infer on a local image
-imgpath = "dataset/image4.jpg"
+imgpath = "dataset/detection-images/image4.jpg"
 # visualize your prediction
 def DetectImgByAPI(img):
     counter = 1
@@ -26,5 +27,6 @@ def DetectImgByAPI(img):
     model.predict(imgpath, confidence=40, overlap=30).save(resultsSavePath)
 
     percResult = detection(imgpath)
+    print(">>> The Waste in this plate is: " + format(percResult, ".2f") + "%")
     return percResult
 print(DetectImgByAPI(imgpath))

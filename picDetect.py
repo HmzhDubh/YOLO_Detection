@@ -5,19 +5,20 @@ model = YOLO("best.pt")
 # model.predict(img_path)
 
 # Using our trained model to predict images by passing it through detection() function
-# img represents the path to the image
+# the img variable represents the path to the image
 
 img = ""
 def detection(img):
     image = img
-    print("\n___________ Detection _____________")
-    print(image)
-    if image.startswith("dataset"):
-        print("image path is correctly formed")
-    else:
-        image = "dataset/" + image
-
-    print("image = ", image)
+    # print("\n___________ Detection _____________")
+    # print(image)
+    # if image.startswith("dataset/detection-images/"):
+    #     print("image path is correctly formed")
+    # else:
+    #
+    #     image = "dataset/detection-images/" + image
+    #
+    # print("image = ", image)
     results = model([image])
 
     for result in results:
@@ -36,7 +37,7 @@ def detection(img):
     for i in range(len(classes)):
 
         if str(classes[i]) == "tensor(1.)":
-            print("plate")
+            #print("plate")
             width = boxes.xywh[i][2]
             height = boxes.xywh[i][3]
 
@@ -44,7 +45,7 @@ def detection(img):
             plateBoxSize = int(re.search(r'\d+', str(plateBoxSize)).group())
 
         elif str(classes[i]) == "tensor(0.)":
-            print("LeftOvers")
+            #print("LeftOvers")
             width = boxes.xywh[i][2]
             height = boxes.xywh[i][3]
             leftoversBoxSize = width * height
@@ -55,7 +56,7 @@ def detection(img):
     perc = (sumLeftoversBoxes / plateBoxSize) * 100
     # perc = perc - 20 # buffer value    print(int(perc), "% of The Food is Wasted")
 
-    return format(perc, ".2f")
+    return perc
 
 #percentage = detection(img)
 #print("{0}%".format(format(percentage, ".2f")))
